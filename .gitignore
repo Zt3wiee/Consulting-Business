@@ -1,0 +1,14 @@
+# macOS leftovers
+.DS_Store
+__MACOSX/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+
+# Node (if tools get added later)
+node_modules/
