@@ -1,0 +1,13 @@
+Photos used on the Inner Circle website
+All photos are from StockSnap.io under the CC0 licence (free for commercial use, no attribution required).
+Current files are 960px versions. For sharper images, download the full-size original from each link
+(click "Free Download"), then send it to be re-cropped into the same file name.
+
+assets/img/bg/main2.jpg               https://stocksnap.io/photo/business-people-QVRHGVCOYS
+assets/img/about/about21.jpg          https://stocksnap.io/photo/business-people-DUXISHKTT3
+assets/img/case-study/casestudy1.jpg  https://stocksnap.io/photo/business-people-JQCQP5J6LP
+assets/img/case-study/casestudy2.jpg  https://stocksnap.io/photo/writing-papers-Y01VDYAX63
+assets/img/case-study/casestudy3.jpg  https://stocksnap.io/photo/business-presenting-XDAR6MIG75
+assets/img/case-study/casestudy4.jpg  https://stocksnap.io/photo/business-team-V8NHXQVQ70
+assets/img/about/about-6.jpg          https://stocksnap.io/photo/business-people-FRU4Y0OBEY
+assets/img/about/about22.jpg          https://stocksnap.io/photo/business-office-IHBPBLYUFE

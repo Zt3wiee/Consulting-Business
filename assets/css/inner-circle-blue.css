@@ -1,0 +1,267 @@
+/*
+============================
+Inner Circle Limited - blue brand colours
+Loaded after master.css; overrides the template's green, yellow and purple.
+============================
+*/
+:root {
+  --ic-navy: #0B2545;   /* dark sections, hover */
+  --ic-blue: #1E4D8C;   /* main brand blue (matches logo) */
+  --ic-bright: #2F6FD6; /* accents, links, active menu */
+  --ic-soft: #CFE2FF;   /* secondary buttons */
+  --ic-tint: #EAF1FB;   /* light backgrounds */
+  --ic-line: #D6E4F7;   /* borders, icon circles */
+}
+
+/* ---------- Section backgrounds (replace green / purple images) ---------- */
+.bg5 {
+  background: radial-gradient(circle at 72% 45%, rgba(47, 111, 214, 0.14), rgba(47, 111, 214, 0) 42%), #ffffff;
+}
+.bg5-left {
+  background: radial-gradient(circle at 25% 50%, rgba(47, 111, 214, 0.12), rgba(47, 111, 214, 0) 40%), #ffffff;
+}
+.bg6 {
+  background: radial-gradient(circle at 88% 18%, rgba(47, 111, 214, 0.55), rgba(47, 111, 214, 0) 38%), var(--ic-navy);
+}
+.bg7 {
+  background: linear-gradient(120deg, var(--ic-blue), var(--ic-navy));
+}
+.bg7:after {
+  display: none;
+}
+.bg9 {
+  background: var(--ic-tint) !important; /* template uses !important */
+}
+.bg12 {
+  background: radial-gradient(circle at 90% 30%, rgba(207, 226, 255, 0.35), rgba(207, 226, 255, 0) 35%),
+    linear-gradient(120deg, var(--ic-blue), var(--ic-navy));
+}
+.bg-13,
+.bg-13-haf:after {
+  background-color: var(--ic-tint);
+}
+.bg-27 {
+  background: var(--ic-tint);
+}
+.bg-28,
+.bg-29 {
+  background: radial-gradient(circle at 80% 50%, rgba(47, 111, 214, 0.1), rgba(47, 111, 214, 0) 45%);
+}
+
+/* ---------- Buttons ---------- */
+.theme-btn-2 {
+  background: var(--ic-blue);
+}
+.theme-btn-2:hover {
+  background: var(--ic-navy);
+}
+.theme-btn-3 {
+  background: var(--ic-soft);
+  color: var(--ic-navy);
+}
+.theme-btn-3:hover {
+  background: #ffffff;
+  color: var(--ic-navy);
+}
+.theme-btn-9 {
+  background: var(--ic-blue);
+}
+.theme-btn-9:hover {
+  background: var(--ic-navy);
+}
+.theme-btn-11 {
+  background: var(--ic-blue);
+  box-shadow: 0 4px 25px rgba(30, 77, 140, 0.3);
+}
+.theme-btn-11:hover {
+  background: var(--ic-bright);
+}
+.theme-btn-13 {
+  color: var(--ic-blue);
+}
+.theme-btn-13:after {
+  background: var(--ic-blue);
+}
+.pricing2 a.price-btn {
+  background: var(--ic-blue);
+  box-shadow: 0 4px 25px rgba(30, 77, 140, 0.15);
+}
+.pricing2 a.price-btn.active,
+.pricing2 a.price-btn:hover {
+  background: var(--ic-bright);
+  color: #ffffff;
+}
+.pricing2 .single-price.active {
+  border-color: var(--ic-blue);
+}
+
+/* ---------- Header & menu ---------- */
+.header-2 .main-menu ul li a:hover,
+.header-2 .main-menu ul li a.active,
+.header-2 li.dropdown-parrent:hover > a,
+.header-4 .main-menu ul li a:hover,
+.header-4 .main-menu ul li a.active,
+.header-4 li.dropdown-parrent:hover > a {
+  color: var(--ic-bright);
+}
+.quick_contact_icon i,
+.header-2 .quick_contact .quick_contact_icon i {
+  color: var(--ic-blue);
+}
+.quick_contact:hover .quick_contact_icon,
+.header-2 .quick_contact:hover .quick_contact_icon {
+  border-color: var(--ic-blue);
+}
+.quick_contact_content h5:hover,
+.quick_contact_content a:hover,
+.header-2 .quick_contact_content h5:hover,
+.header-2 .quick_contact_content a:hover {
+  color: var(--ic-bright);
+}
+
+/* ---------- Headings & small labels ---------- */
+.title small.heading-top2,
+.heading2 small.heading-top {
+  background: var(--ic-tint);
+}
+.heading2 small.heading-top.inner-heading-top {
+  background: rgba(30, 77, 140, 0.12);
+}
+.inner-title p {
+  color: var(--ic-blue);
+}
+
+/* ---------- Cards, counters, forms ---------- */
+.counter2 .conter-icon {
+  background: var(--ic-tint);
+}
+.main-form input,
+.main-form textarea {
+  background: var(--ic-tint);
+}
+.down-arrow2 {
+  border-top-color: var(--ic-blue);
+}
+
+/* Green / purple PNG icons -> blue */
+.business-icon img,
+.conter-icon img,
+.pricing-icon img,
+.contact-box-icon img {
+  filter: hue-rotate(75deg) saturate(1.2);
+}
+.inner-font-1 .conter-icon img,
+.contact-box-icon img {
+  filter: hue-rotate(-28deg) saturate(1.3);
+}
+
+/* ---------- Footer ---------- */
+.footer-2 .contact-icon,
+.footer-4 .contact-icon {
+  background: var(--ic-line);
+}
+.copyright2 {
+  border-top-color: var(--ic-line);
+}
+.social.social3 ul li a {
+  color: var(--ic-blue);
+  background: var(--ic-tint);
+}
+.social.social3 ul li a:hover {
+  background: var(--ic-blue);
+  color: #ffffff;
+}
+
+/* ---------- Photos: always fill their frame ---------- */
+.about-haf-img img,
+.hero-main-img img,
+.about-bg-main-img img,
+.case-study-img img {
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Homepage hero: selling points (in place of client logos) ---------- */
+.hero-points ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.hero-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  color: var(--ic-navy);
+}
+.hero-points .pricing-icon img {
+  width: 24px;
+  filter: hue-rotate(75deg) saturate(1.2);
+}
+
+/* ---------- Footer / mobile "Get in touch": one line per icon, centred ---------- */
+.footer-contact .single-contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 40px;
+}
+.footer-contact .single-contact .contact-icon {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.footer-contact .single-contact a {
+  margin-bottom: 0;
+  line-height: 22px;
+}
+.footer-contact {
+  margin-bottom: 16px;
+}
+
+/* ---------- "Contact Me" email strip buttons ---------- */
+.subscribe-from-wrap button {
+  background: var(--ic-blue);
+  color: #ffffff;
+}
+.subscribe-from-wrap button:hover,
+.subscribe-4 .subscribe-from-wrap button:hover {
+  background: var(--ic-bright);
+  color: #ffffff;
+}
+.subscribe-4 .subscribe-from-wrap button {
+  background: var(--ic-navy);
+}
+.subscribe2 .heading2.white-heading p {
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 16px;
+}
+
+/* ---------- Remaining hover / mobile colours ---------- */
+.footer-menu ul li a:hover,
+.footer-2 .footer-menu ul li a:hover,
+.footer-4 .footer-menu ul li a:hover {
+  color: var(--ic-bright);
+}
+.social ul li a:hover,
+.social.social2 ul li a:hover {
+  background: var(--ic-blue);
+  color: #ffffff;
+}
+.social.social2 ul li a {
+  color: var(--ic-blue);
+}
+.single-inner-service:hover {
+  border-color: var(--ic-blue);
+}
+.counter2 .single-counter:hover {
+  background: var(--ic-navy);
+}
+.contact-icon {
+  background: var(--ic-tint);
+}
+.mobile-sidebar {
+  background: var(--ic-navy);
+}
