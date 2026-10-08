@@ -265,3 +265,144 @@ Loaded after master.css; overrides the template's green, yellow and purple.
 .mobile-sidebar {
   background: var(--ic-navy);
 }
+
+/* ---------- Service detail pages ---------- */
+ul.category-list li a.active,
+ul.category-list li a:hover {
+  background: var(--ic-blue);
+}
+.categories {
+  background: var(--ic-tint);
+}
+.bg-24 {
+  background: var(--ic-tint) !important; /* template uses !important */
+}
+.single-service-advise {
+  background: var(--ic-tint);
+}
+.ic-check-list ul li i,
+.ic-check-list ul li svg {
+  color: var(--ic-bright);
+  margin-right: 10px;
+}
+.single-service-advise {
+  height: 100%;
+}
+.ic-step {
+  background: #ffffff;
+  border: 1px solid var(--ic-line);
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 20px;
+  height: calc(100% - 20px);
+}
+.ic-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ic-blue);
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.ic-step p {
+  margin-bottom: 0;
+}
+.ic-faq {
+  margin-top: 20px;
+}
+.ic-faq .faq-heading {
+  padding-right: 44px;
+  line-height: 1.4;
+}
+.ic-faq .faq-heading:after,
+.ic-faq .faq-heading.collapsed:after {
+  content: "\2212";
+  background: var(--ic-blue);
+  color: #ffffff;
+  font-size: 20px;
+  font-family: inherit;
+}
+.ic-faq .faq-heading.collapsed:after {
+  content: "+";
+}
+.inner-title p a {
+  color: inherit;
+}
+.inner-title p a:hover {
+  color: var(--ic-bright);
+}
+.single-inner-service h3 a {
+  color: inherit;
+}
+.single-inner-service h3 a:hover,
+.ic-card-link {
+  color: var(--ic-blue);
+}
+.ic-card-link {
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.ic-card-link:hover {
+  color: var(--ic-navy);
+}
+
+/* ---------- Service photos (replace illustrations) ---------- */
+.service-img img.ic-service-photo,
+.download-card-img img.ic-service-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.single-inner-service .service-img {
+  margin-bottom: 20px;
+}
+
+/* ---------- Blog articles ---------- */
+ul.blog-tags li a {
+  color: var(--ic-bright);
+}
+.blog-date-time ul li span {
+  font-size: 16px;
+  line-height: 24px;
+  color: #161540;
+  margin-right: 16px;
+}
+.ic-article h3 {
+  font-size: 26px;
+  line-height: 34px;
+}
+.ic-article ul:not(.blog-tags):not(.blog-date):not(.blog-time) {
+  list-style: disc;
+  padding-left: 22px;
+  margin-bottom: 30px;
+}
+.ic-article ul:not(.blog-tags):not(.blog-date):not(.blog-time) li {
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 28px;
+}
+.ic-article .single-blog-quote {
+  background: var(--ic-tint);
+  border-left: 4px solid var(--ic-blue);
+  padding: 24px 30px;
+  margin-bottom: 30px;
+}
+.ic-article .single-blog-quote h4 {
+  margin-bottom: 0;
+}
+.ic-article-cta {
+  background: var(--ic-tint);
+  border-radius: 8px;
+  padding: 30px;
+  margin-top: 40px;
+}
+.ic-article-cta p a {
+  color: var(--ic-blue);
+  font-weight: 600;
+}
