@@ -104,6 +104,44 @@ Loaded after master.css; overrides the template's green, yellow and purple.
 .header-4 li.dropdown-parrent:hover > a {
   color: var(--ic-bright);
 }
+/* Nav hover: text zooms up slightly, presses in on click, and a blue underline
+   grows from the centre (the underline also marks the current page) */
+@media (min-width: 992px) {
+  .main-menu .menu_list > li > a {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .main-menu .menu_list > li > a:hover {
+    transform: scale(1.08);
+  }
+  .main-menu .menu_list > li > a:active {
+    transform: scale(0.95);
+    transition-duration: 0.1s;
+  }
+  .main-menu .menu_list > li > a:after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: -2px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--ic-bright);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  .main-menu .menu_list > li > a:hover:after,
+  .main-menu .menu_list > li > a.active:after {
+    transform: scaleX(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main-menu .menu_list > li > a:hover,
+  .main-menu .menu_list > li > a:active {
+    transform: none;
+  }
+}
 .quick_contact_icon i,
 .header-2 .quick_contact .quick_contact_icon i {
   color: var(--ic-blue);
@@ -405,4 +443,248 @@ ul.blog-tags li a {
 .ic-article-cta p a {
   color: var(--ic-blue);
   font-weight: 600;
+}
+
+/* ---------- 404 page ---------- */
+.ic-inline-link {
+  color: var(--ic-blue);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ---------- Custom cursor (dot + trailing ring, desktop only) ---------- */
+.ic-cursor-dot,
+.ic-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease, width 0.25s ease, height 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+.ic-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--ic-bright);
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.8); /* stays visible on navy sections */
+}
+.ic-cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(47, 111, 214, 0.55);
+  /* faint white halo so the ring still shows on dark backgrounds */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+.ic-cursor-visible .ic-cursor-dot,
+.ic-cursor-visible .ic-cursor-ring {
+  opacity: 1;
+}
+.ic-cursor-hover .ic-cursor-ring {
+  width: 56px;
+  height: 56px;
+  background-color: rgba(47, 111, 214, 0.08);
+  border-color: rgba(47, 111, 214, 0.6);
+}
+.ic-cursor-hover .ic-cursor-dot {
+  width: 6px;
+  height: 6px;
+}
+.ic-cursor-down .ic-cursor-ring {
+  width: 28px;
+  height: 28px;
+}
+@media (hover: none), (pointer: coarse) {
+  .ic-cursor-dot,
+  .ic-cursor-ring {
+    display: none;
+  }
+}
+/* Light version over dark sections (class set by main.js) */
+.ic-cursor-on-dark .ic-cursor-ring {
+  border-color: rgba(255, 255, 255, 0.6);
+  /* faint navy halo so the white ring still shows over light badges and buttons */
+  box-shadow: 0 0 0 1px rgba(11, 37, 69, 0.3), inset 0 0 0 1px rgba(11, 37, 69, 0.3);
+}
+.ic-cursor-on-dark.ic-cursor-hover .ic-cursor-ring {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+.ic-cursor-on-dark .ic-cursor-dot {
+  background: #ffffff;
+  box-shadow: 0 0 0 1.5px rgba(47, 111, 214, 0.6);
+}
+
+/* ---------- Language switcher (markup written by build-languages.py) ---------- */
+.desktop-info,
+.header-btn {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.ic-lang {
+  position: relative;
+}
+.ic-lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--ic-line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--ic-navy);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.ic-lang-toggle:hover,
+.ic-lang.open .ic-lang-toggle {
+  border-color: var(--ic-bright);
+  background: var(--ic-tint);
+  color: var(--ic-blue);
+}
+.ic-lang-toggle:focus-visible,
+.ic-lang-option:focus-visible,
+.ic-lang-chip:focus-visible {
+  outline: 2px solid var(--ic-bright);
+  outline-offset: 2px;
+}
+.ic-lang-globe {
+  color: var(--ic-blue);
+}
+.ic-lang-caret {
+  transition: transform 0.25s ease;
+}
+.ic-lang.open .ic-lang-caret {
+  transform: rotate(180deg);
+}
+.ic-lang-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 50;
+  min-width: 190px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid var(--ic-line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(11, 37, 69, 0.14);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+.ic-lang.open .ic-lang-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.ic-lang-option {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: var(--ic-navy);
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.ic-lang-option:hover {
+  background: var(--ic-tint);
+  color: var(--ic-blue);
+}
+.ic-lang-option.active {
+  background: var(--ic-tint);
+  color: var(--ic-blue);
+  font-weight: 700;
+  box-shadow: inset 3px 0 0 var(--ic-bright);
+}
+/* Mobile menu: language chips */
+.ic-lang-mobile {
+  margin: 30px 0 40px;
+}
+.ic-lang-mobile h3 {
+  margin-bottom: 14px;
+  color: #ffffff;
+  font-size: 20px;
+}
+.ic-lang-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ic-lang-chip {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.2;
+}
+.ic-lang-chip:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+.ic-lang-chip.active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--ic-navy);
+  font-weight: 700;
+}
+
+/* ---------- Fonts for the translated pages ---------- */
+/* Satoshi and Canela have no Khmer, Vietnamese or Chinese letters, so each language uses a font that does.
+   Icons (<i> and <svg>) are left alone. */
+html[lang="km"] body *:not(i):not(svg):not(svg *) {
+  font-family: "Kantumruy Pro", "satoshi", sans-serif !important;
+}
+html[lang="vi"] body *:not(i):not(svg):not(svg *) {
+  font-family: "Be Vietnam Pro", "satoshi", sans-serif !important;
+}
+html[lang="zh-Hant-TW"] body *:not(i):not(svg):not(svg *) {
+  font-family: "Noto Sans TC", "satoshi", sans-serif !important;
+}
+/* Khmer letters stack above and below the line, so give them more room */
+html[lang="km"] p,
+html[lang="km"] li {
+  line-height: 1.8;
+}
+html[lang="km"] h1,
+html[lang="km"] h2,
+html[lang="km"] h3,
+html[lang="km"] h4,
+html[lang="km"] h5 {
+  line-height: 1.45;
+}
+/* English names in the switcher keep the site font */
+html:not([lang="en"]) .ic-lang [lang="en"],
+html:not([lang="en"]) .ic-lang-chips [lang="en"] {
+  font-family: "satoshi", sans-serif !important;
+}
+
+/* ---------- Hidden until the real phone number is ready ---------- */
+/* Delete these rules to show the phone number again. */
+.desktop-info .quick_contact {
+  display: none;
+}
+footer .footer-contact:has(a[href^="tel:"]),
+.mobile-sidebar .footer-contact:has(a[href^="tel:"]),
+.contact-boxes [class*="col-"]:has(a[href^="tel:"]),
+.price-notice a[href^="tel:"] {
+  display: none;
+}
+/* Keep the remaining contact boxes centred */
+.contact-boxes .row {
+  justify-content: center;
+}
+
+/* Leave room for the sticky header when jumping to the contact form */
+#contact-form {
+  scroll-margin-top: 80px;
 }

@@ -753,7 +753,8 @@
     //Aos animation active
 
     AOS.init({
-      offset: 200,
+      offset: 60, // start animations soon after an element enters the screen (200 left sections blank while scrolling)
+      once: true, // animate each element only once, not again every time you scroll back up
       duration: 400,
       easing: "ease-in-out",
       anchorPlacement: "top-bottom",
@@ -964,3 +965,136 @@
   });
 })();
 
+
+// Custom cursor: blue dot + trailing ring (mouse devices only)
+(function () {
+  if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var dot = document.createElement('div');
+  var ring = document.createElement('div');
+  dot.className = 'ic-cursor-dot';
+  ring.className = 'ic-cursor-ring';
+  document.body.appendChild(ring);
+  document.body.appendChild(dot);
+
+  var mouseX = 0, mouseY = 0, ringX = 0, ringY = 0, started = false;
+  var hoverTargets = 'a, button, input, textarea, select, label, [role="button"], .nice-select, .hamburger_menu';
+  var lastTarget = null;
+
+  // Luminance (0-1) of an "rgb(...)"/"rgba(...)" string, or null if mostly transparent
+  function luminance(color) {
+    var m = color.match(/rgba?\(([^)]+)\)/);
+    if (!m) return null;
+    var p = m[1].split(',').map(parseFloat);
+    if (p.length > 3 && p[3] < 0.5) return null;
+    return (0.299 * p[0] + 0.587 * p[1] + 0.114 * p[2]) / 255;
+  }
+
+  // Walk up from the hovered element to the first large enough element with a solid
+  // background colour or gradient, and report whether that background is dark.
+  // Elements smaller than the ring (icons, tiny badges) are skipped so the ring matches what surrounds them.
+  // Add data-cursor="light" or data-cursor="dark" to any element to force it.
+  function isDarkAt(el) {
+    for (; el && el !== document.documentElement; el = el.parentElement) {
+      var forced = el.getAttribute && el.getAttribute('data-cursor');
+      if (forced) return forced === 'light';
+      if (el.offsetWidth < 40 || el.offsetHeight < 40) continue;
+      var style = getComputedStyle(el);
+      var lum = luminance(style.backgroundColor);
+      if (lum === null && style.backgroundImage.indexOf('gradient') !== -1) {
+        var colors = style.backgroundImage.match(/rgba?\([^)]+\)/g) || [];
+        var solid = colors.map(luminance).filter(function (l) { return l !== null; });
+        if (solid.length) lum = solid.reduce(function (a, b) { return a + b; }, 0) / solid.length;
+      }
+      if (lum !== null) return lum < 0.45;
+    }
+    return false;
+  }
+
+  document.addEventListener('mousemove', function (e) {
+    if (e.target !== lastTarget) {
+      lastTarget = e.target;
+      root.classList.toggle('ic-cursor-on-dark', isDarkAt(e.target));
+    }
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!started) {
+      ringX = mouseX;
+      ringY = mouseY;
+      started = true;
+    }
+    dot.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px) translate(-50%, -50%)';
+    root.classList.add('ic-cursor-visible');
+    root.classList.toggle('ic-cursor-hover', !!(e.target.closest && e.target.closest(hoverTargets)));
+  });
+
+  document.addEventListener('mouseleave', function () { root.classList.remove('ic-cursor-visible'); });
+  document.addEventListener('mousedown', function () { root.classList.add('ic-cursor-down'); });
+  document.addEventListener('mouseup', function () { root.classList.remove('ic-cursor-down'); });
+
+  (function follow() {
+    var ease = reduceMotion ? 1 : 0.18;
+    ringX += (mouseX - ringX) * ease;
+    ringY += (mouseY - ringY) * ease;
+    ring.style.transform = 'translate(' + ringX + 'px, ' + ringY + 'px) translate(-50%, -50%)';
+    requestAnimationFrame(follow);
+  })();
+})();
+
+// Highlight the current page in the main menu (service detail pages count as Services)
+(function () {
+  var page = location.pathname.split('/').pop() || 'index.html';
+  var servicePages = ['business-strategy.html', 'company-setup.html', 'finance-advisory.html', 'hr.html', 'marketing.html', 'operations.html'];
+  if (servicePages.indexOf(page) !== -1) page = 'service-1.html';
+  var links = document.querySelectorAll('.main-menu .menu_list a');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === page) links[i].classList.add('active');
+  }
+})();
+
+// Language switcher: open/close the dropdown and remember the visitor's choice
+(function () {
+  var STORAGE_KEY = 'ic-lang';
+
+  function save(code) {
+    try { localStorage.setItem(STORAGE_KEY, code); } catch (e) { /* storage blocked: nothing to remember */ }
+  }
+
+  document.querySelectorAll('[data-ic-lang]').forEach(function (box) {
+    var toggle = box.querySelector('.ic-lang-toggle');
+    function setOpen(open) {
+      box.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!box.classList.contains('open'));
+    });
+    document.addEventListener('click', function (e) {
+      if (!box.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && box.classList.contains('open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  });
+
+  document.querySelectorAll('a[data-lang]').forEach(function (link) {
+    link.addEventListener('click', function () { save(link.getAttribute('data-lang')); });
+  });
+
+  // A returning visitor who chose another language lands on the home page in that language
+  // (only when arriving from outside the site, so clicking "English" or "Home" always works).
+  var page = location.pathname.split('/').pop() || 'index.html';
+  if (document.documentElement.lang === 'en' && page === 'index.html') {
+    var saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { /* ignore */ }
+    var fromThisSite = document.referrer && document.referrer.indexOf(location.origin) === 0 && location.origin !== 'null';
+    var target = document.querySelector('a[data-lang="' + saved + '"]');
+    if (saved && saved !== 'en' && target && !fromThisSite) location.replace(target.href);
+  }
+})();

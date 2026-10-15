@@ -22,10 +22,11 @@
   <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
   <link rel="stylesheet" href="assets/css/plugins/fonts.css">
   <link rel="stylesheet" href="assets/css/master.css">
-  <link rel="stylesheet" href="assets/css/inner-circle-blue.css">
+  <link rel="stylesheet" href="assets/css/inner-circle-blue.css?v=9">
 
   <!--===== jQuery=======-->
   <script src="assets/js/plugins/jquery-3-6-0.min.js"></script>
+  <!--lang:head--><!--/lang:head-->
 </head>
 
 <body>
@@ -42,7 +43,7 @@
             <div class="animation-preloader">
               <!-- <div class="spinner"></div> -->
 
-              <div class="cp-preloader cp-preloader_type2">
+              <div class="cp-preloader cp-preloader_type2" translate="no">
                 <span class="cp-preloader__letter" data-preloader="I">I</span>
                 <span class="cp-preloader__letter" data-preloader="N">N</span>
                 <span class="cp-preloader__letter" data-preloader="N">N</span>
@@ -87,6 +88,21 @@
               </div>
             </div>
             <div class="header-btn">
+              <!--lang:switcher-->
+              <div class="ic-lang" data-ic-lang translate="no">
+                <button type="button" class="ic-lang-toggle" aria-expanded="false" aria-controls="ic-lang-menu" aria-label="Choose language: English">
+                  <svg class="ic-lang-globe" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+                  <span class="ic-lang-name" lang="en">English</span>
+                  <svg class="ic-lang-caret" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <ul class="ic-lang-menu" id="ic-lang-menu">
+                  <li><a href="finance-advisory.html" hreflang="en" lang="en" data-lang="en" class="ic-lang-option active" aria-current="true">English</a></li>
+                  <li><a href="km/finance-advisory.html" hreflang="km" lang="km" data-lang="km" class="ic-lang-option">ភាសាខ្មែរ</a></li>
+                  <li><a href="vi/finance-advisory.html" hreflang="vi" lang="vi" data-lang="vi" class="ic-lang-option">Tiếng Việt</a></li>
+                  <li><a href="zh-tw/finance-advisory.html" hreflang="zh-Hant-TW" lang="zh-Hant-TW" data-lang="zh-tw" class="ic-lang-option">中文 (台灣)</a></li>
+                </ul>
+              </div>
+              <!--/lang:switcher-->
               <a href="contact-1.html" class="theme-btn-9">Book a Consultation</a>
             </div>
           </div>
@@ -123,6 +139,18 @@
         <li><a href="contact-1.html">Contact</a></li>
       </ul>
 
+      <!--lang:mobile-->
+      <div class="ic-lang-mobile" translate="no">
+        <h3>Language</h3>
+        <div class="ic-lang-chips">
+          <a href="finance-advisory.html" hreflang="en" lang="en" data-lang="en" class="ic-lang-chip active" aria-current="true">English</a>
+          <a href="km/finance-advisory.html" hreflang="km" lang="km" data-lang="km" class="ic-lang-chip">ភាសាខ្មែរ</a>
+          <a href="vi/finance-advisory.html" hreflang="vi" lang="vi" data-lang="vi" class="ic-lang-chip">Tiếng Việt</a>
+          <a href="zh-tw/finance-advisory.html" hreflang="zh-Hant-TW" lang="zh-Hant-TW" data-lang="zh-tw" class="ic-lang-chip">中文 (台灣)</a>
+        </div>
+      </div>
+      <!--/lang:mobile-->
+
       <div class="mobile-contact">
         <div class="single-footer">
           <h3>Get in touch</h3>
@@ -140,7 +168,7 @@
               <div class="contact-icon">
                 <img src="assets/img/icons/contact-email4.svg" alt="" />
               </div>
-              <a href="mailto:info@yourdomain.com">info@yourdomain.com</a>
+              <a href="mailto:info@innercircle.com">info@innercircle.com</a>
             </div>
           </div>
         </div>
@@ -155,8 +183,8 @@
       <div class="row">
         <div class="col-lg-10 m-auto">
           <div class="inner-title text-center">
-            <p><a href="index.html">Home</a> / <a href="service-1.html">Services</a> / Finance Advisory</p>
-            <h2>Finance &amp; Accounting Advisory</h2>
+            <p data-aos="fade-down" data-aos-duration="800"><a href="index.html">Home</a> / <a href="service-1.html">Services</a> / Finance Advisory</p>
+            <h2 data-aos="fade-up" data-aos-duration="1000">Finance &amp; Accounting Advisory</h2>
           </div>
         </div>
       </div>
@@ -170,13 +198,13 @@
       <div class="row">
         <div class="col-lg-8">
           <div class="single-service-contents">
-            <h3>Understand your numbers and make better financial decisions.</h3>
-            <p>Good financial management is the foundation of a healthy business. Yet many owners do not have a clear view of their cash flow, profitability or upcoming tax obligations until it is too late to act.</p>
-            <p>We help you build simple, reliable financial processes, from budgeting and cash-flow planning to reporting and tax compliance, so you always know where your business stands and can plan ahead with confidence.</p>
+            <h3 data-aos="fade-up" data-aos-duration="600">Understand your numbers and make better financial decisions.</h3>
+            <p data-aos="fade-up" data-aos-duration="600">Good financial management is the foundation of a healthy business. Yet many owners do not have a clear view of their cash flow, profitability or upcoming tax obligations until it is too late to act.</p>
+            <p data-aos="fade-up" data-aos-duration="600">We help you build simple, reliable financial processes, from budgeting and cash-flow planning to reporting and tax compliance, so you always know where your business stands and can plan ahead with confidence.</p>
 
             <div class="space30"></div>
-            <h4>What we help with</h4>
-            <div class="service-list ic-check-list">
+            <h4 data-aos="fade-up" data-aos-duration="600">What we help with</h4>
+            <div class="service-list ic-check-list" data-aos="fade-up" data-aos-duration="800">
               <ul>
                 <li><i class="fa-solid fa-circle-check"></i> Budgeting and financial forecasting</li>
                 <li><i class="fa-solid fa-circle-check"></i> Cash-flow planning and monitoring</li>
@@ -190,13 +218,13 @@
             <div class="space30"></div>
             <div class="row">
               <div class="col-lg-6">
-                <div class="single-service-advise">
+                <div class="single-service-advise" data-aos="fade-right" data-aos-duration="800">
                   <h4>Who is it for?</h4>
                   <p>Small and medium businesses without a full finance team, owners who want clearer numbers, and companies preparing for growth, funding or an audit.</p>
                 </div>
               </div>
               <div class="col-lg-6">
-                <div class="single-service-advise">
+                <div class="single-service-advise" data-aos="fade-left" data-aos-duration="800">
                   <h4>What you get</h4>
                   <p>Clear financial reports, a realistic budget and cash-flow plan, and practical advice on improving profitability and staying compliant.</p>
                 </div>
@@ -204,31 +232,31 @@
             </div>
 
             <div class="space40"></div>
-            <h4>How we work</h4>
+            <h4 data-aos="fade-up" data-aos-duration="600">How we work</h4>
             <div class="row">
               <div class="col-md-6">
-                <div class="ic-step">
+                <div class="ic-step" data-aos="fade-up" data-aos-duration="800">
                   <span class="ic-step-num">1</span>
                   <h5>Consultation</h5>
                   <p>We discuss your current finances, systems and the challenges you face.</p>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="ic-step">
+                <div class="ic-step" data-aos="fade-up" data-aos-duration="1000">
                   <span class="ic-step-num">2</span>
                   <h5>Review</h5>
                   <p>We review your accounts, reports and processes to find gaps and risks.</p>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="ic-step">
+                <div class="ic-step" data-aos="fade-up" data-aos-duration="800">
                   <span class="ic-step-num">3</span>
                   <h5>Plan</h5>
                   <p>We set up budgets, forecasts and reporting that fit your business.</p>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="ic-step">
+                <div class="ic-step" data-aos="fade-up" data-aos-duration="1000">
                   <span class="ic-step-num">4</span>
                   <h5>Support</h5>
                   <p>We provide ongoing advice and reviews to keep your finances on track.</p>
@@ -237,9 +265,9 @@
             </div>
 
             <div class="space30"></div>
-            <h4>Frequently asked questions</h4>
+            <h4 data-aos="fade-up" data-aos-duration="600">Frequently asked questions</h4>
             <div class="faqs inner-faq ic-faq" id="service-faq">
-              <div class="single-faq">
+              <div class="single-faq" data-aos="fade-up" data-aos-duration="600">
                 <h2 class="faq-heading font-f-3 weight-700" id="faq-heading1" data-bs-toggle="collapse"
                   data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                   Do you replace my accountant?
@@ -249,7 +277,7 @@
                   <p class="font-f-3 weight-500">Not necessarily. We can work alongside your existing accountant or bookkeeper, focusing on planning, analysis and advice, or help you set up accounting if you do not have one.</p>
                 </div>
               </div>
-              <div class="single-faq">
+              <div class="single-faq" data-aos="fade-up" data-aos-duration="600">
                 <h2 class="faq-heading collapsed font-f-3 weight-700" id="faq-heading2" data-bs-toggle="collapse"
                   data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                   Can you help if my records are not up to date?
@@ -259,7 +287,7 @@
                   <p class="font-f-3 weight-500">Yes. Many clients come to us with incomplete records. We help you organise them and put simple systems in place so it does not happen again.</p>
                 </div>
               </div>
-              <div class="single-faq">
+              <div class="single-faq" data-aos="fade-up" data-aos-duration="600">
                 <h2 class="faq-heading collapsed font-f-3 weight-700" id="faq-heading3" data-bs-toggle="collapse"
                   data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
                   How often will I receive financial reports?
@@ -269,7 +297,7 @@
                   <p class="font-f-3 weight-500">Usually monthly or quarterly, depending on your needs. We agree the format and timing with you at the start.</p>
                 </div>
               </div>
-              <div class="single-faq">
+              <div class="single-faq" data-aos="fade-up" data-aos-duration="600">
                 <h2 class="faq-heading collapsed font-f-3 weight-700" id="faq-heading4" data-bs-toggle="collapse"
                   data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                   Can you help with tax compliance?
@@ -284,7 +312,7 @@
         </div>
         <div class="col-lg-4">
           <div class="widgets">
-            <div class="single-widget categories">
+            <div class="single-widget categories" data-aos="fade-left" data-aos-duration="800">
               <h3>Our Services</h3>
               <ul class="category-list">
                 <li>
@@ -314,7 +342,7 @@
               </ul>
             </div>
 
-            <div class="widget-download-card single-widget bg-24">
+            <div class="widget-download-card single-widget bg-24" data-aos="fade-left" data-aos-duration="1000">
               <h4>Not sure where to start? Talk to us about your business.</h4>
               <a class="theme-btn-11 full-btn" href="contact-1.html">Book a Consultation</a>
               <div class="download-card-img text-center">
@@ -334,12 +362,12 @@
       <div class="row">
         <div class="col-lg-6 m-auto text-center">
           <div class="heading2">
-            <h2>Explore our other services</h2>
+            <h2 data-aos="fade-up" data-aos-duration="800">Explore our other services</h2>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="800">
           <div class="single-inner-service trans-1">
             <div class="service-img">
               <img class="ic-service-photo" src="assets/img/service/photos/business-strategy.jpg" alt="Team discussing business strategy at a whiteboard">
@@ -351,7 +379,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
           <div class="single-inner-service trans-1">
             <div class="service-img">
               <img class="ic-service-photo" src="assets/img/service/photos/company-setup.jpg" alt="Business partners shaking hands outside an office building">
@@ -363,7 +391,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200">
           <div class="single-inner-service trans-1">
             <div class="service-img">
               <img class="ic-service-photo" src="assets/img/service/photos/operations.jpg" alt="Team planning work processes with sticky notes">
@@ -375,7 +403,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="800">
           <div class="single-inner-service trans-1">
             <div class="service-img">
               <img class="ic-service-photo" src="assets/img/service/photos/marketing.jpg" alt="Presenting marketing results on a screen in a meeting">
@@ -387,7 +415,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
           <div class="single-inner-service trans-1">
             <div class="service-img">
               <img class="ic-service-photo" src="assets/img/service/photos/hr.jpg" alt="Job interview in an office">
@@ -409,13 +437,13 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6">
-          <div class="heading4 white-heading inner-heading no-margin-heading">
+          <div class="heading4 white-heading inner-heading no-margin-heading" data-aos="fade-right" data-aos-duration="800">
             <h2>Ready to grow your business?</h2>
             <p>Leave your email and we will contact you to arrange a free first consultation.</p>
           </div>
         </div>
         <div class="col-lg-5 col-md-6 offset-lg-1">
-          <div class="sunscribe-form">
+          <div class="sunscribe-form" data-aos="fade-left" data-aos-duration="1000">
             <div class="subscribe-from-wrap">
               <form action="#">
                 <input type="email" placeholder="Email Address">
@@ -490,7 +518,7 @@
                 <div class="contact-icon">
                   <img src="assets/img/icons/contact-email4.svg" alt="" />
                 </div>
-                <a href="mailto:info@yourdomain.com">info@yourdomain.com</a>
+                <a href="mailto:info@innercircle.com">info@innercircle.com</a>
               </div>
             </div>
           </div>
@@ -545,7 +573,7 @@
   <script src="assets/js/plugins/jquery.countup.min.js"></script>
   <script src="assets/js/plugins/popper.min.js"></script>
   <script src="assets/js/plugins/jquery.waypoints.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=6"></script>
 
 </body>
 
