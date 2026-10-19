@@ -1043,14 +1043,17 @@
   })();
 })();
 
-// Highlight the current page in the main menu (service detail pages count as Services)
+// Highlight the current page in the main and mobile menus (service detail pages count as Services)
 (function () {
   var page = location.pathname.split('/').pop() || 'index.html';
   var servicePages = ['business-strategy.html', 'company-setup.html', 'finance-advisory.html', 'hr.html', 'marketing.html', 'operations.html'];
   if (servicePages.indexOf(page) !== -1) page = 'service-1.html';
-  var links = document.querySelectorAll('.main-menu .menu_list a');
+  var links = document.querySelectorAll('.main-menu .menu_list a, .mobile-nav-list a');
   for (var i = 0; i < links.length; i++) {
-    if (links[i].getAttribute('href') === page) links[i].classList.add('active');
+    if (links[i].getAttribute('href') === page) {
+      links[i].classList.add('active');
+      links[i].setAttribute('aria-current', 'page');
+    }
   }
 })();
 
