@@ -240,6 +240,19 @@ Loaded after master.css; overrides the template's green, yellow and purple.
   filter: hue-rotate(75deg) saturate(1.2);
 }
 
+/* Homepage hero: the template's fixed 950px height left a big gap under the header */
+@media (min-width: 992px) {
+  .welcome-area.welcome-2 {
+    height: auto;
+    padding: 130px 0 80px;
+  }
+  /* Lift the headline block a little above centre of the photo */
+  .welcome-2 .title2 {
+    position: relative;
+    top: -70px;
+  }
+}
+
 /* ---------- Footer / mobile "Get in touch": one line per icon, centred ---------- */
 .footer-contact .single-contact {
   display: flex;
@@ -668,6 +681,63 @@ html:not([lang="en"]) .ic-lang-chips [lang="en"] {
   font-family: "satoshi", sans-serif !important;
 }
 
+/* ---------- Responsive fixes ---------- */
+/* Tablets: centred section titles sit in a narrow column (col-md-4..7), which breaks them into
+   4-5 short lines. Give them most of the row instead. */
+@media (min-width: 768px) and (max-width: 991px) {
+  .row > :is(.col-md-4, .col-md-5, .col-md-6, .col-md-7).m-auto:has(> .heading2.text-center) {
+    flex: 0 0 auto;
+    width: 83.333333%;
+  }
+}
+/* Tablets: stack the service-card icon above the text (as the template already does on phones),
+   so the text gets the full card width */
+@media (max-width: 991px) {
+  .single-business {
+    padding-left: 40px;
+  }
+  .single-business .business-icon {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-bottom: 24px;
+  }
+}
+/* Template titles use line-height = font-size, so wrapped lines touch. Give them room. */
+.single-business h3 {
+  line-height: 1.25;
+}
+.price-heading p,
+.pricing2 .price-heading p {
+  line-height: 1.3;
+}
+.single-faq2 h3 {
+  line-height: 1.4;
+}
+html[lang="km"] .price-heading p,
+html[lang="km"] .pricing2 .price-heading p {
+  line-height: 1.45;
+}
+/* Small phones: the email address in the contact boxes ran past the card edge */
+@media (max-width: 400px) {
+  .single-contact-box {
+    padding-left: 76px;
+  }
+  .contact-box-icon {
+    left: 22px;
+  }
+  .contact-box-content a {
+    font-size: 19px;
+    overflow-wrap: anywhere;
+  }
+}
+/* Tablets / small laptops: the decorative corner shape sat 50px outside the screen edge */
+@media (max-width: 1199px) {
+  .corner-right-bottom-shape2 {
+    right: 0;
+  }
+}
+
 /* ---------- Hidden until the real phone number is ready ---------- */
 /* Delete these rules to show the phone number again. */
 .desktop-info .quick_contact {
@@ -687,4 +757,101 @@ footer .footer-contact:has(a[href^="tel:"]),
 /* Leave room for the sticky header when jumping to the contact form */
 #contact-form {
   scroll-margin-top: 80px;
+}
+
+/* ---------- Preloader: logo mark + name ---------- */
+.ic-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9009999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.ic-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+.ic-loader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  transition: transform 0.5s ease;
+}
+.ic-loader.loaded .ic-loader-inner {
+  transform: scale(0.96);
+}
+.ic-loader-mark {
+  width: 64px;
+  height: 64px;
+}
+.ic-loader-track,
+.ic-loader-ring {
+  fill: none;
+  stroke-width: 4;
+}
+.ic-loader-track {
+  stroke: var(--ic-line);
+}
+.ic-loader-ring {
+  stroke: var(--ic-blue);
+  stroke-linecap: round;
+  stroke-dasharray: 170;
+  stroke-dashoffset: 120;
+  transform-origin: 32px 32px;
+  animation: ic-loader-spin 1.1s linear infinite;
+}
+.ic-loader-dot {
+  fill: var(--ic-blue);
+  transform-origin: 32px 32px;
+  animation: ic-loader-pulse 1.1s ease-in-out infinite;
+}
+.ic-loader-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  letter-spacing: 0.32em;
+  margin-right: -0.32em; /* letter-spacing adds space after the last letter */
+  color: var(--ic-navy);
+  animation: ic-loader-name 0.8s ease-out both;
+}
+.ic-loader-bar {
+  width: 140px;
+  height: 2px;
+  background: var(--ic-line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.ic-loader-bar span {
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: var(--ic-bright);
+  border-radius: 2px;
+  animation: ic-loader-bar 1.2s ease-in-out infinite;
+}
+@keyframes ic-loader-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes ic-loader-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.8); }
+}
+@keyframes ic-loader-name {
+  from { opacity: 0; letter-spacing: 0.6em; }
+  to { opacity: 1; letter-spacing: 0.32em; }
+}
+@keyframes ic-loader-bar {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ic-loader-ring,
+  .ic-loader-dot,
+  .ic-loader-name,
+  .ic-loader-bar span {
+    animation: none;
+  }
 }
