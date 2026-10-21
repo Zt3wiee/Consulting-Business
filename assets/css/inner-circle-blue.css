@@ -738,22 +738,6 @@ html[lang="km"] .pricing2 .price-heading p {
   }
 }
 
-/* ---------- Hidden until the real phone number is ready ---------- */
-/* Delete these rules to show the phone number again. */
-.desktop-info .quick_contact {
-  display: none;
-}
-footer .footer-contact:has(a[href^="tel:"]),
-.mobile-sidebar .footer-contact:has(a[href^="tel:"]),
-.contact-boxes [class*="col-"]:has(a[href^="tel:"]),
-.price-notice a[href^="tel:"] {
-  display: none;
-}
-/* Keep the remaining contact boxes centred */
-.contact-boxes .row {
-  justify-content: center;
-}
-
 /* Leave room for the sticky header when jumping to the contact form */
 #contact-form {
   scroll-margin-top: 80px;
@@ -945,4 +929,248 @@ footer .footer-contact:has(a[href^="tel:"]),
   .counter2 .corner-right-bottom-shape2 {
     display: none;
   }
+}
+
+/* ---------- Homepage: three service cards in one row, icon above the text ---------- */
+.ic-business-3 > [class*="col-"] {
+  display: flex;
+}
+.ic-business-3 .single-business {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-left: 32px;
+}
+.ic-business-3 .single-business .business-icon {
+  position: relative;
+  left: auto;
+  top: auto;
+  margin-bottom: 24px;
+}
+.ic-business-3 .single-business .business-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ic-blue);
+  font-size: 30px;
+}
+.ic-business-3 .single-business .theme-btn-7 {
+  margin-top: auto;
+}
+.single-business p.ic-tags {
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 600;
+  color: var(--ic-soft);
+  margin-bottom: 24px;
+}
+
+/* ---------- Feature tiles (why choose us, values, industries) ---------- */
+.ic-tiles > [class*="col-"] {
+  display: flex;
+  margin-bottom: 24px;
+}
+.ic-tile {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--ic-line);
+  border-radius: 8px;
+  padding: 28px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Accent line that grows across the top on hover */
+.ic-tile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ic-blue), var(--ic-bright));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.ic-tile:hover {
+  transform: translateY(-6px);
+  border-color: var(--ic-soft);
+  box-shadow: 0 18px 40px rgba(11, 37, 69, 0.12);
+}
+.ic-tile:hover::before {
+  transform: scaleX(1);
+}
+.ic-tile-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--ic-tint);
+  color: var(--ic-blue);
+  font-size: 20px;
+  margin-bottom: 18px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.ic-tile:hover .ic-tile-icon {
+  background: var(--ic-blue);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ic-tile,
+  .ic-tile::before,
+  .ic-tile-icon {
+    transition: none;
+  }
+  .ic-tile:hover,
+  .ic-tile:hover .ic-tile-icon {
+    transform: none;
+  }
+}
+.ic-tile h4 {
+  font-family: "satoshi", sans-serif;
+  font-weight: 700;
+  color: #09120E;
+  font-size: 20px;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.ic-tile p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+.ic-tile p a {
+  color: var(--ic-blue);
+  font-weight: 600;
+}
+.ic-tile p a:hover {
+  color: var(--ic-navy);
+}
+/* Icon beside a one-line label */
+.ic-tile-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.ic-tile-row .ic-tile-icon {
+  flex: 0 0 52px;
+  margin-bottom: 0;
+}
+.ic-tile-row h4 {
+  margin-bottom: 0;
+}
+@media (max-width: 991px) {
+  .ic-tiles {
+    margin-top: 30px;
+  }
+}
+/* Full-width button rows inside these flex rows stay centred */
+.ic-tiles > .text-center,
+.ic-business-3 > .text-center {
+  justify-content: center;
+}
+/* About page: "Our Vision" / "Our Mission" sub-headings */
+.about-inner .heading2 h4 {
+  font-family: "satoshi", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.3;
+  color: #09120E;
+  margin: 26px 0 8px;
+}
+
+/* ---------- Services: licensing / scope note ---------- */
+.ic-scope-note {
+  font-size: 15px;
+  line-height: 1.6;
+  font-style: italic;
+  color: #5C6B80;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+/* ---------- Contact form: "Area of Interest" dropdown matches the text fields ---------- */
+.main-form select {
+  margin-bottom: 24px;
+  background: var(--ic-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23161540' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 20px center;
+  border-radius: 5px;
+  border: none;
+  padding: 20px 48px 20px 20px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #161540;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* ---------- Forms not yet connected to an email or form service (see main.js) ---------- */
+.ic-form-notice {
+  margin: 14px 0 0;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: #FFF4E5;
+  color: #6B4300;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Homepage "Our Approach": intro line on the navy background */
+.case-study-1 .heading2.white-heading p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------- Service cards: same height in a row, button on the bottom line ---------- */
+.row > [class*="col-"]:has(> .single-inner-service) {
+  display: flex;
+}
+.single-inner-service {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.single-inner-service .service-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+.single-inner-service .service-content .full-btn {
+  margin-top: auto;
+}
+
+/* ---------- Article cards: same height in a row, "Read More" on the bottom line ---------- */
+.row > [class*="col-"]:has(> .single-blog) {
+  display: flex;
+}
+.single-blog.blog-md {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.single-blog.blog-md .blog-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+.single-blog.blog-md .blog-contents .theme-btn-4 {
+  margin-top: auto;
+}
+
+/* ---------- Homepage article tags: brand light blue, like the section labels ---------- */
+.blog2 ul.blog-tags li a {
+  background: var(--ic-tint);
+  color: var(--ic-blue);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.blog2 ul.blog-tags li a:hover {
+  background: var(--ic-blue);
+  color: #ffffff;
 }

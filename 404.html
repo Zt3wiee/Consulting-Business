@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
   <link rel="stylesheet" href="assets/css/plugins/fonts.css">
   <link rel="stylesheet" href="assets/css/master.css">
-  <link rel="stylesheet" href="assets/css/inner-circle-blue.css?v=9">
+  <link rel="stylesheet" href="assets/css/inner-circle-blue.css?v=15">
 
   <!--===== jQuery=======-->
   <script src="assets/js/plugins/jquery-3-6-0.min.js"></script>
@@ -85,8 +85,9 @@
                 <div class="menu-wrap">
                   <ul class="menu_list">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about-1.html">About Us</a></li>
                     <li><a href="service-1.html">Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="about-1.html">About Us</a></li>
                     <li><a href="contact-1.html">Contact</a></li>
                   </ul>
                 </div>
@@ -142,8 +143,9 @@
 
       <ul class="mobile-nav-list">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about-1.html">About Us</a></li>
         <li><a href="service-1.html">Services</a></li>
+        <li><a href="industries.html">Industries</a></li>
+        <li><a href="about-1.html">About Us</a></li>
         <li><a href="contact-1.html">Contact</a></li>
       </ul>
 
@@ -160,29 +162,6 @@
         </div>
       </div>
       <!--/lang:mobile-->
-
-      <div class="mobile-contact">
-        <div class="single-footer">
-          <h3>Get in touch</h3>
-
-          <div class="footer-contact">
-            <div class="single-contact">
-              <div class="contact-icon">
-                <img src="assets/img/icons/contact-phone4.svg" alt="" />
-              </div>
-              <a href="tel:+85500000000">+855 00 000 000</a>
-            </div>
-          </div>
-          <div class="footer-contact">
-            <div class="single-contact">
-              <div class="contact-icon">
-                <img src="assets/img/icons/contact-email4.svg" alt="" />
-              </div>
-              <a href="mailto:info@innercircle.com">info@innercircle.com</a>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <!--=====Mobile header end=======-->
@@ -223,18 +202,19 @@
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="heading4 white-heading inner-heading no-margin-heading" data-aos="fade-right" data-aos-duration="800">
-            <h2>Ready to grow your business?</h2>
-            <p>Leave your email and we will contact you to arrange a free first consultation.</p>
+            <h2>Let&rsquo;s discuss your next business opportunity.</h2>
+            <p>Leave your email and our team will contact you to arrange an initial consultation.</p>
           </div>
         </div>
         <div class="col-lg-5 col-md-6 offset-lg-1">
           <div class="sunscribe-form" data-aos="fade-left" data-aos-duration="1000">
             <div class="subscribe-from-wrap">
-              <form action="#">
-                <input type="email" placeholder="Email Address">
+              <form data-ic-form>
+                <input type="email" name="email" placeholder="Email Address" required>
                 <button type="submit" name="button">Contact Me <img src="assets/img/icons/arrow-up-right.svg"
                     alt=""></button>
               </form>
+              <p class="ic-form-notice" role="status" hidden>Thank you for your interest. Our online form is not connected yet, so this message has not been sent.</p>
             </div>
           </div>
         </div>
@@ -252,10 +232,7 @@
             <a href="index.html" class="footer-logo">
               <img src="assets/img/logo/inner-circle.svg" alt="Inner Circle Limited" /></a>
             <div class="space20"></div>
-            <p>
-              Inner Circle Limited is a business consulting firm helping
-              companies plan, grow and operate with confidence.
-            </p>
+            <p>Inner Circle Limited is an independent consulting company providing strategic advisory across IT, finance and commodities.</p>
           </div>
         </div>
         <div class="col-lg col-sm-6">
@@ -263,12 +240,9 @@
             <h3>Services</h3>
             <div class="footer-menu">
               <ul>
-                <li><a href="business-strategy.html">Business Strategy</a></li>
-                <li><a href="company-setup.html">Company Setup</a></li>
-                <li><a href="finance-advisory.html">Finance Advisory</a></li>
-                <li><a href="operations.html">Operations</a></li>
-                <li><a href="marketing.html">Marketing</a></li>
-                <li><a href="hr.html">HR &amp; Organisation</a></li>
+                <li><a href="it-consulting.html">IT Consulting</a></li>
+                <li><a href="finance-business-consulting.html">Finance &amp; Business Consulting</a></li>
+                <li><a href="commodities-trading-consulting.html">Commodities &amp; Trading Consulting</a></li>
               </ul>
             </div>
           </div>
@@ -279,9 +253,8 @@
             <div class="footer-menu">
               <ul>
                 <li><a href="about-1.html">About Us</a></li>
+                <li><a href="industries.html">Industries</a></li>
                 <li><a href="contact-1.html">Contact Us</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Use</a></li>
               </ul>
             </div>
           </div>
@@ -289,22 +262,11 @@
         <div class="col-lg-3 col-sm-6">
           <div class="single-footer">
             <h3>Get in touch</h3>
-
-            <div class="footer-contact">
-              <div class="single-contact">
-                <div class="contact-icon">
-                  <img src="assets/img/icons/contact-phone4.svg" alt="" />
-                </div>
-                <a href="tel:+85500000000">+855 00 000 000</a>
-              </div>
-            </div>
-            <div class="footer-contact">
-              <div class="single-contact">
-                <div class="contact-icon">
-                  <img src="assets/img/icons/contact-email4.svg" alt="" />
-                </div>
-                <a href="mailto:info@innercircle.com">info@innercircle.com</a>
-              </div>
+            <p>Contact our team to arrange an initial consultation.</p>
+            <div class="footer-menu">
+              <ul>
+                <li><a href="contact-1.html#contact-form">Send a Business Inquiry</a></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -312,24 +274,6 @@
       <div class="row align-items-center copyright2">
         <div class="col-lg-6">
           <p>© 2026 Inner Circle Limited. All Rights Reserved.</p>
-        </div>
-        <div class="col-lg-6 text-right">
-          <div class="social social3">
-            <ul>
-              <li>
-                <a data-bs-toggle="tooltip" title="Linked in" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-              </li>
-              <li>
-                <a data-bs-toggle="tooltip" title="Facebook" href="#"><i class="fa-brands fa-facebook-f"></i></a>
-              </li>
-              <li>
-                <a data-bs-toggle="tooltip" title="Instagram" href="#"><i class="fa-brands fa-instagram"></i></a>
-              </li>
-              <li>
-                <a data-bs-toggle="tooltip" title="TikTok" href="#"><i class="fa-brands fa-tiktok"></i></a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
@@ -358,7 +302,7 @@
   <script src="assets/js/plugins/jquery.countup.min.js"></script>
   <script src="assets/js/plugins/popper.min.js"></script>
   <script src="assets/js/plugins/jquery.waypoints.min.js"></script>
-  <script src="assets/js/main.js?v=6"></script>
+  <script src="assets/js/main.js?v=7"></script>
 
 </body>
 

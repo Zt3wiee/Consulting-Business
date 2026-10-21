@@ -1046,7 +1046,7 @@
 // Highlight the current page in the main and mobile menus (service detail pages count as Services)
 (function () {
   var page = location.pathname.split('/').pop() || 'index.html';
-  var servicePages = ['business-strategy.html', 'company-setup.html', 'finance-advisory.html', 'hr.html', 'marketing.html', 'operations.html'];
+  var servicePages = ['it-consulting.html', 'finance-business-consulting.html', 'commodities-trading-consulting.html'];
   if (servicePages.indexOf(page) !== -1) page = 'service-1.html';
   var links = document.querySelectorAll('.main-menu .menu_list a, .mobile-nav-list a');
   for (var i = 0; i < links.length; i++) {
@@ -1055,6 +1055,20 @@
       links[i].setAttribute('aria-current', 'page');
     }
   }
+})();
+
+// Enquiry forms are not connected to an email or form service yet. A form without an action
+// would just reload the page, so stop it and say plainly that nothing was sent.
+// To connect a form, give it action="<form service URL>" and method="post"; it then submits normally.
+(function () {
+  document.querySelectorAll('form[data-ic-form]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      if (form.getAttribute('action')) return;
+      e.preventDefault();
+      var notice = form.parentNode.querySelector('.ic-form-notice');
+      if (notice) notice.hidden = false;
+    });
+  });
 })();
 
 // Language switcher: open/close the dropdown and remember the visitor's choice
