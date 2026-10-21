@@ -3,7 +3,7 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #ffffff;
+        fill: url(#linear-gradient);
       }
 
       .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
@@ -15,33 +15,33 @@
       }
 
       .cls-3 {
-        fill: #ffffff;
+        fill: url(#New_Gradient_Swatch);
       }
 
       .cls-4 {
-        fill: #ffffff;
+        fill: url(#linear-gradient-2);
       }
 
       .cls-5 {
-        fill: #ffffff;
+        fill: url(#linear-gradient-3);
       }
     </style>
     <linearGradient id="linear-gradient" x1="14.5" y1="84.5" x2="84.5" y2="14.5" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#9dc1e3"/>
-      <stop offset="1" stop-color="#326ea6"/>
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#8fb4e0"/>
     </linearGradient>
     <linearGradient id="linear-gradient-2" x1="21.64" y1="84.5" x2="91.65" y2="14.5" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#326ea6"/>
-      <stop offset="1" stop-color="#9dc1e3"/>
+      <stop offset="0" stop-color="#8fb4e0"/>
+      <stop offset="1" stop-color="#ffffff"/>
     </linearGradient>
     <linearGradient id="linear-gradient-3" x1="67.97" y1="91.78" x2="3.71" y2="35.18" xlink:href="#linear-gradient-2"/>
     <linearGradient id="New_Gradient_Swatch" data-name="New Gradient Swatch" x1="91.59" y1="83.25" x2="49.26" y2="2.16" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#326ea6"/>
-      <stop offset="1" stop-color="#9dc1e3"/>
+      <stop offset="0" stop-color="#8fb4e0"/>
+      <stop offset="1" stop-color="#ffffff"/>
     </linearGradient>
     <linearGradient id="New_Gradient_Swatch_copy" data-name="New Gradient Swatch copy" x1="115.75" y1="52.35" x2="230.07" y2="52.35" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#9dc1e3"/>
-      <stop offset="1" stop-color="#326ea6"/>
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#8fb4e0"/>
     </linearGradient>
   </defs>
   <g id="OBJECTS">

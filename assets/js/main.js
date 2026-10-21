@@ -665,6 +665,11 @@
       });
     }
 
+    // mobile header: fixed via CSS, shadow once scrolled
+    $(window).on("scroll", function () {
+      $(".mobile-header").toggleClass("sticky", $(window).scrollTop() > 0);
+    });
+
     //up button old function
     if ($(".up-arrow").length > 0) {
       $(window).on("scroll", function (event) {
@@ -752,13 +757,24 @@
 
     //Aos animation active
 
+    // Phones/tablets (mobile layout): one light fade-up for everything instead of the
+    // desktop mix of slides and zooms, and the first screen (hero) shows at once.
+    var aosMobile = window.matchMedia("(max-width: 991px)").matches;
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (aosMobile) {
+      $(".welcome-area [data-aos], .inner-1 [data-aos]").removeAttr("data-aos");
+      $("[data-aos]")
+        .attr("data-aos", "ic-fade-up")
+        .removeAttr("data-aos-duration data-aos-delay");
+    }
+
     AOS.init({
-      offset: 60, // start animations soon after an element enters the screen (200 left sections blank while scrolling)
+      offset: aosMobile ? 30 : 60, // start animations soon after an element enters the screen (200 left sections blank while scrolling)
       once: true, // animate each element only once, not again every time you scroll back up
       duration: 400,
-      easing: "ease-in-out",
+      easing: "ease-out",
       anchorPlacement: "top-bottom",
-      disable: "mobile",
+      disable: reduceMotion,
     });
 
     //Nice select option active
