@@ -1251,3 +1251,46 @@ html[lang="km"] .pricing2 .price-heading p {
     padding-top: 24px;
   }
 }
+
+/* The two advice cards stack below 992px; keep a gap between them across that
+   whole range (the template only added it below 768px). */
+@media (max-width: 991px) {
+  .single-service-advise {
+    height: auto; /* height:100% above makes the card swallow its own margin when stacked */
+    margin-bottom: 24px;
+  }
+}
+
+/* Stacked "How we work" steps: tighter gap under the heading and between steps. */
+@media (max-width: 767px) {
+  .ic-step {
+    height: auto;
+    margin-top: 12px;
+  }
+}
+
+/* Phones: the template stacks 60px of bottom padding on 60px of top padding between
+   sections (about 120px). Tighten it to about 80px. */
+@media (max-width: 767px) {
+  .section-padding {
+    padding: 40px 0;
+  }
+  .section-padding2 {
+    padding: 40px 0 20px;
+  }
+}
+
+/* Phones: the template shrinks the small pill labels to 12px, which is hard to read. */
+@media (max-width: 767px) {
+  .heading2 small.heading-top {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+
+/* Hide the scroll-to-top circle while the mobile menu is open; it floated on top of the menu. */
+body:has(.mobile-sidebar.mobile-menu-active) .progress-wrap {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
