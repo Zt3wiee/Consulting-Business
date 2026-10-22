@@ -1240,3 +1240,14 @@ html[lang="km"] .pricing2 .price-heading p {
   opacity: 1;
   transform: none;
 }
+
+/* Mobile: hide the decorative corner shape on photos (it overlapped the tag and
+   heading underneath) and give the text a little room below the image. */
+@media (max-width: 991px) {
+  .corner-right-bottom-shape2 {
+    display: none;
+  }
+  .about-inner .ml50 {
+    padding-top: 24px;
+  }
+}
