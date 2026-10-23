@@ -11,8 +11,10 @@ How it works
   Text with formatting keeps its tags in both the key and the translation, for example
   "<span class=\"heilight-left\">How</span> we work with our clients."
 - A missing or empty translation shows the English instead, so a page never breaks.
-- The translated pages are written to km/, vi/ and zh-tw/. Do not edit those folders by hand:
-  they are replaced every time this script runs.
+- Every page lives in its own folder (about/index.html is served as /about/; the home page is index.html
+  at the top). Links between pages and to files are written from the site root ("/about/", "/assets/...").
+- The translated pages are written to km/, vi/ and zh-tw/ with the same folder layout (km/about/index.html).
+  Do not edit those folders by hand: they are deleted and rebuilt every time this script runs.
 - The language switcher, the language fonts and the alternate-language links live between
   <!--lang:...--> markers in every page. This script writes them; edit the templates below instead.
 """
@@ -22,6 +24,7 @@ import html
 import json
 import os
 import re
+import shutil
 import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -192,7 +195,23 @@ def tag_attr_texts(tag):
 
 
 def page_files():
-    return sorted(os.path.basename(p) for p in glob.glob(os.path.join(ROOT, "*.html")))
+    """Pages as paths from the site root: index.html, 404.html and <folder>/index.html (English sources only)."""
+    skip = {"assets", "lang"} | {l["code"] for l in LANGUAGES}
+    found = [os.path.basename(p) for p in glob.glob(os.path.join(ROOT, "*.html"))]
+    for p in glob.glob(os.path.join(ROOT, "*", "index.html")):
+        folder = os.path.basename(os.path.dirname(p))
+        if folder not in skip:
+            found.append(folder + "/index.html")
+    return sorted(found)
+
+
+def clean_path(page):
+    """Address of a page: index.html -> /, about/index.html -> /about/, 404.html -> /404.html."""
+    if page == "index.html":
+        return "/"
+    if page.endswith("/index.html"):
+        return "/" + page[:-len("index.html")]
+    return "/" + page
 
 
 def read(path):
@@ -272,37 +291,10 @@ def translate_page(source, t):
     return re.sub(r"<[a-zA-Z][^>]*>", attrs, source)
 
 
-def is_relative_asset(url):
-    """True for links to files in this folder ("assets/img/a.png"); False for pages, anchors and full URLs."""
-    url = url.strip()
-    if not url or url.startswith(("#", "/", "data:", "mailto:", "tel:", "javascript:")) or re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", url):
-        return False
-    return not re.split(r"[?#]", url)[0].lower().endswith(".html")
-
-
-def move_into_folder(source):
-    """Fixes file links for a page that lives one folder down (km/index.html): assets/x becomes ../assets/x.
-    Links to other pages stay as they are, so they point at the same language."""
-    def fix_url(url):
-        return "../" + url if is_relative_asset(url) else url
-
-    def tag(m):
-        text = m.group(0)
-        for am in reversed(list(ATTR_RE.finditer(text))):
-            name, value = am.group(1).lower(), am.group(3)[1:-1]
-            if name in URL_ATTRS:
-                if name == "srcset":
-                    new = ", ".join(" ".join([fix_url(p.split()[0])] + p.split()[1:]) for p in value.split(",") if p.strip())
-                else:
-                    new = fix_url(value)
-            elif name == "style":
-                new = re.sub(r"url\(\s*(['\"]?)([^'\")]+)\1\s*\)", lambda u: f"url({u.group(1)}{fix_url(u.group(2))}{u.group(1)})", value)
-            else:
-                continue
-            s, e = am.start(3) + 1, am.end(3) - 1
-            text = text[:s] + new + text[e:]
-        return text
-    return re.sub(r"<[a-zA-Z][^>]*>", tag, source)
+def prefix_links(source, code):
+    """Points links to other pages at the same language: /about/ becomes /km/about/.
+    Links to files (/assets/...) and full URLs are left alone."""
+    return re.sub(r"(\bhref=[\"'])/(?!assets/|/)", lambda m: m.group(1) + "/" + code + "/", source)
 
 
 # ---------- Language switcher, fonts and alternate links ----------
@@ -315,8 +307,7 @@ CARET_ICON = ('<svg class="ic-lang-caret" viewBox="0 0 24 24" width="14" height=
 
 def page_url(page, target, current):
     """Link from the current language's copy of page to target's copy."""
-    up = "" if current["code"] == "en" else "../"
-    return up + ("" if target["code"] == "en" else target["code"] + "/") + page
+    return ("" if target["code"] == "en" else "/" + target["code"]) + clean_path(page)
 
 
 def lang_links(page, current, css_class):
@@ -341,9 +332,9 @@ def marker_content(name, page, current, t):
             lines.append(f'<link rel="stylesheet" href="{current["font"]}">')
         if SITE_URL:
             for language in LANGUAGES:
-                prefix = "" if language["code"] == "en" else language["code"] + "/"
-                lines.append(f'<link rel="alternate" hreflang="{language["html_lang"]}" href="{SITE_URL.rstrip("/")}/{prefix}{page}">')
-            lines.append(f'<link rel="alternate" hreflang="x-default" href="{SITE_URL.rstrip("/")}/{page}">')
+                prefix = "" if language["code"] == "en" else "/" + language["code"]
+                lines.append(f'<link rel="alternate" hreflang="{language["html_lang"]}" href="{SITE_URL.rstrip("/")}{prefix}{clean_path(page)}">')
+            lines.append(f'<link rel="alternate" hreflang="x-default" href="{SITE_URL.rstrip("/")}{clean_path(page)}">')
         return "\n  " + "\n  ".join(lines) + "\n  " if lines else ""
     if name == "switcher":
         items = "\n".join(f"                  <li>{a}</li>" for a in lang_links(page, current, "ic-lang-option"))
@@ -392,14 +383,14 @@ def build():
     for language in LANGUAGES[1:]:
         t = load_translations(language["code"])
         folder = os.path.join(ROOT, language["code"])
-        for old in glob.glob(os.path.join(folder, "*.html")):
-            os.remove(old)
+        if os.path.isdir(folder):
+            shutil.rmtree(folder)
         for page in pages:
             source = read(os.path.join(ROOT, page))
             source = MARKER_RE.sub(lambda m: m.group(1) + m.group(4), source)
             source = translate_page(source, t)
             source = re.sub(r'<html\b[^>]*\blang="[^"]*"', lambda m: re.sub(r'lang="[^"]*"', f'lang="{language["html_lang"]}"', m.group(0)), source, count=1)
-            source = move_into_folder(source)
+            source = prefix_links(source, language["code"])
             source = fill_markers(source, page, language, t)
             write(os.path.join(folder, page), source)
         missing = [k for k in keys if k not in t]

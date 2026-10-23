@@ -1061,12 +1061,17 @@
 
 // Highlight the current page in the main and mobile menus (service detail pages count as Services)
 (function () {
-  var page = location.pathname.split('/').pop() || 'index.html';
-  var servicePages = ['it-consulting.html', 'finance-business-consulting.html', 'commodities-trading-consulting.html'];
-  if (servicePages.indexOf(page) !== -1) page = 'service-1.html';
+  // Compare clean addresses without the language folder: /km/about/ and /about/ are both "/about/"
+  function clean(path) {
+    path = path.replace(/index\.html$/, '').replace(/\/?$/, '/');
+    return path.replace(/^\/(km|vi|zh-tw)\//, '/');
+  }
+  var page = clean(location.pathname);
+  var servicePages = ['/it-consulting/', '/finance-business-consulting/', '/commodities-trading-consulting/'];
+  if (servicePages.indexOf(page) !== -1) page = '/services/';
   var links = document.querySelectorAll('.main-menu .menu_list a, .mobile-nav-list a');
   for (var i = 0; i < links.length; i++) {
-    if (links[i].getAttribute('href') === page) {
+    if (clean(links[i].getAttribute('href').split('#')[0]) === page) {
       links[i].classList.add('active');
       links[i].setAttribute('aria-current', 'page');
     }
@@ -1122,8 +1127,8 @@
 
   // A returning visitor who chose another language lands on the home page in that language
   // (only when arriving from outside the site, so clicking "English" or "Home" always works).
-  var page = location.pathname.split('/').pop() || 'index.html';
-  if (document.documentElement.lang === 'en' && page === 'index.html') {
+  var isHome = location.pathname === '/' || /\/index\.html$/.test(location.pathname) && location.pathname.split('/').length === 2;
+  if (document.documentElement.lang === 'en' && isHome) {
     var saved = null;
     try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { /* ignore */ }
     var fromThisSite = document.referrer && document.referrer.indexOf(location.origin) === 0 && location.origin !== 'null';

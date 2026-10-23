@@ -1294,3 +1294,34 @@ body:has(.mobile-sidebar.mobile-menu-active) .progress-wrap {
   visibility: hidden;
   pointer-events: none;
 }
+
+/* Homepage hero photo on tablet and phone: shown under the buttons in the same style as the
+   About photo (portrait, square corners, angled white corner at the top right with a small scribble).
+   The template hid it below 992px. */
+@media (max-width: 991px) {
+  .hero-img-elements {
+    margin-top: 32px;
+    margin-bottom: 64px; /* room for the round down-arrow button that overlaps the section edge */
+  }
+  .hero-main-img img.border-radius {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    object-fit: cover;
+    object-position: center 15%;
+    border-radius: 0;
+  }
+  .hero-main-img.top-right-polygon-1:after {
+    border-left: 80px solid transparent;
+    border-right: 0 solid transparent;
+    border-top: 135px solid #ffffff;
+  }
+  .hero-main-img .corner-shape2 {
+    width: 60px;
+    top: 0;
+    right: 0;
+  }
+  .hero-main-img .corner-right-bottom-shape2 {
+    display: none;
+  }
+}

@@ -1,0 +1,58 @@
+# Old page addresses -> clean addresses (Cloudflare Pages / Netlify format).
+# Sent as permanent (301) redirects so existing links and Google results keep working.
+
+/index.html / 301
+/about-1.html /about/ 301
+/about-1 /about/ 301
+/service-1.html /services/ 301
+/service-1 /services/ 301
+/contact-1.html /contact/ 301
+/contact-1 /contact/ 301
+/industries.html /industries/ 301
+/it-consulting.html /it-consulting/ 301
+/finance-business-consulting.html /finance-business-consulting/ 301
+/commodities-trading-consulting.html /commodities-trading-consulting/ 301
+/5-signs-your-business-needs-a-clear-strategy.html /5-signs-your-business-needs-a-clear-strategy/ 301
+/cash-flow-vs-profit.html /cash-flow-vs-profit/ 301
+
+/km/index.html /km/ 301
+/km/about-1.html /km/about/ 301
+/km/about-1 /km/about/ 301
+/km/service-1.html /km/services/ 301
+/km/service-1 /km/services/ 301
+/km/contact-1.html /km/contact/ 301
+/km/contact-1 /km/contact/ 301
+/km/industries.html /km/industries/ 301
+/km/it-consulting.html /km/it-consulting/ 301
+/km/finance-business-consulting.html /km/finance-business-consulting/ 301
+/km/commodities-trading-consulting.html /km/commodities-trading-consulting/ 301
+/km/5-signs-your-business-needs-a-clear-strategy.html /km/5-signs-your-business-needs-a-clear-strategy/ 301
+/km/cash-flow-vs-profit.html /km/cash-flow-vs-profit/ 301
+
+/vi/index.html /vi/ 301
+/vi/about-1.html /vi/about/ 301
+/vi/about-1 /vi/about/ 301
+/vi/service-1.html /vi/services/ 301
+/vi/service-1 /vi/services/ 301
+/vi/contact-1.html /vi/contact/ 301
+/vi/contact-1 /vi/contact/ 301
+/vi/industries.html /vi/industries/ 301
+/vi/it-consulting.html /vi/it-consulting/ 301
+/vi/finance-business-consulting.html /vi/finance-business-consulting/ 301
+/vi/commodities-trading-consulting.html /vi/commodities-trading-consulting/ 301
+/vi/5-signs-your-business-needs-a-clear-strategy.html /vi/5-signs-your-business-needs-a-clear-strategy/ 301
+/vi/cash-flow-vs-profit.html /vi/cash-flow-vs-profit/ 301
+
+/zh-tw/index.html /zh-tw/ 301
+/zh-tw/about-1.html /zh-tw/about/ 301
+/zh-tw/about-1 /zh-tw/about/ 301
+/zh-tw/service-1.html /zh-tw/services/ 301
+/zh-tw/service-1 /zh-tw/services/ 301
+/zh-tw/contact-1.html /zh-tw/contact/ 301
+/zh-tw/contact-1 /zh-tw/contact/ 301
+/zh-tw/industries.html /zh-tw/industries/ 301
+/zh-tw/it-consulting.html /zh-tw/it-consulting/ 301
+/zh-tw/finance-business-consulting.html /zh-tw/finance-business-consulting/ 301
+/zh-tw/commodities-trading-consulting.html /zh-tw/commodities-trading-consulting/ 301
+/zh-tw/5-signs-your-business-needs-a-clear-strategy.html /zh-tw/5-signs-your-business-needs-a-clear-strategy/ 301
+/zh-tw/cash-flow-vs-profit.html /zh-tw/cash-flow-vs-profit/ 301
