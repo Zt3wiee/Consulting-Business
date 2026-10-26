@@ -653,13 +653,13 @@ ul.blog-tags li a {
 }
 
 /* ---------- Fonts for the translated pages ---------- */
-/* Satoshi and Canela have no Khmer, Vietnamese or Chinese letters, so each language uses a font that does.
+/* Satoshi and Canela have no Khmer, Arabic or Chinese letters, so each language uses a font that does.
    Icons (<i> and <svg>) are left alone. */
 html[lang="km"] body *:not(i):not(svg):not(svg *) {
   font-family: "Kantumruy Pro", "satoshi", sans-serif !important;
 }
-html[lang="vi"] body *:not(i):not(svg):not(svg *) {
-  font-family: "Be Vietnam Pro", "satoshi", sans-serif !important;
+html[lang="ar"] body *:not(i):not(svg):not(svg *) {
+  font-family: "IBM Plex Sans Arabic", "satoshi", sans-serif !important;
 }
 html[lang="zh-Hant-TW"] body *:not(i):not(svg):not(svg *) {
   font-family: "Noto Sans TC", "satoshi", sans-serif !important;
@@ -674,6 +674,18 @@ html[lang="km"] h2,
 html[lang="km"] h3,
 html[lang="km"] h4,
 html[lang="km"] h5 {
+  line-height: 1.45;
+}
+/* Arabic letters join and have tall marks, so give them a little more line height */
+html[lang="ar"] p,
+html[lang="ar"] li {
+  line-height: 1.8;
+}
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] h5 {
   line-height: 1.45;
 }
 /* English names in the switcher keep the site font */
@@ -1323,5 +1335,130 @@ body:has(.mobile-sidebar.mobile-menu-active) .progress-wrap {
   }
   .hero-main-img .corner-right-bottom-shape2 {
     display: none;
+  }
+}
+
+/* ---------- Right-to-left pages (Arabic) ---------- */
+/* The pages get dir="rtl", which mirrors text and flex rows. These rules mirror the
+   spacing and positions this stylesheet sets for left-to-right pages. */
+[dir="rtl"] .fa-arrow-right,
+[dir="rtl"] .fa-arrow-left {
+  transform: scaleX(-1);
+}
+/* Buttons tilt their arrow up with rotate(-45deg); the mirrored arrow tilts the other way */
+[dir="rtl"] :is(.theme-btn-2, .theme-btn-3, .theme-btn-4, .theme-btn-10, .theme-btn-11, .theme-btn-17) span {
+  transform: rotate(45deg);
+}
+[dir="rtl"] .ic-lang-menu {
+  right: auto;
+  left: 0;
+}
+[dir="rtl"] .ic-lang-option.active,
+[dir="rtl"] .mobile-nav-list li a.active {
+  box-shadow: inset -3px 0 0 var(--ic-bright);
+}
+[dir="rtl"] .mobile-nav-list li a.active {
+  padding-left: 0;
+  padding-right: 14px;
+}
+[dir="rtl"] .ic-check-list ul li i,
+[dir="rtl"] .ic-check-list ul li svg {
+  margin-right: 0;
+  margin-left: 10px;
+}
+[dir="rtl"] .faq-heading {
+  padding-right: 0;
+  padding-left: 44px;
+}
+[dir="rtl"] .blog-date-time ul li span {
+  margin-right: 0;
+  margin-left: 16px;
+}
+[dir="rtl"] .ic-article ul:not(.blog-tags):not(.blog-date):not(.blog-time) {
+  padding-left: 0;
+  padding-right: 22px;
+}
+[dir="rtl"] .ic-article .single-blog-quote {
+  border-left: 0;
+  border-right: 4px solid var(--ic-blue);
+}
+[dir="rtl"] .blog2 ul.blog-tags li a {
+  text-align: right;
+}
+[dir="rtl"] .text-start {
+  text-align: right !important;
+}
+[dir="rtl"] .text-end {
+  text-align: left !important;
+}
+
+/* ---------- Our offices (contact page cards and footer list) ---------- */
+.ic-locations {
+  padding-top: 100px;
+}
+.ic-location-card {
+  margin-top: 30px;
+  padding: 36px 30px;
+  text-align: center;
+  background: var(--ic-tint);
+  border: 1px solid var(--ic-line);
+  border-radius: 16px;
+}
+.ic-location-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--ic-bright);
+  font-size: 22px;
+}
+.ic-location-card h3 {
+  margin-bottom: 6px;
+  font-family: "satoshi";
+  font-weight: 700;
+  color: var(--ic-navy);
+  font-size: 22px;
+  line-height: 1.3;
+}
+.ic-location-card p {
+  margin: 0;
+  color: var(--ic-blue);
+}
+.single-footer .ic-footer-label {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #09120E;
+}
+.single-footer .ic-footer-locations {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.single-footer .ic-footer-locations li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 500;
+  color: rgba(9, 18, 14, 0.7);
+}
+.single-footer .ic-footer-locations li i,
+.single-footer .ic-footer-locations li svg {
+  width: 16px;
+  margin-right: 8px;
+  color: var(--ic-bright);
+}
+[dir="rtl"] .single-footer .ic-footer-locations li i,
+[dir="rtl"] .single-footer .ic-footer-locations li svg {
+  margin-right: 0;
+  margin-left: 8px;
+}
+@media (max-width: 991px) {
+  .ic-locations {
+    padding-top: 60px;
   }
 }

@@ -29,19 +29,19 @@
 /km/5-signs-your-business-needs-a-clear-strategy.html /km/5-signs-your-business-needs-a-clear-strategy/ 301
 /km/cash-flow-vs-profit.html /km/cash-flow-vs-profit/ 301
 
-/vi/index.html /vi/ 301
-/vi/about-1.html /vi/about/ 301
-/vi/about-1 /vi/about/ 301
-/vi/service-1.html /vi/services/ 301
-/vi/service-1 /vi/services/ 301
-/vi/contact-1.html /vi/contact/ 301
-/vi/contact-1 /vi/contact/ 301
-/vi/industries.html /vi/industries/ 301
-/vi/it-consulting.html /vi/it-consulting/ 301
-/vi/finance-business-consulting.html /vi/finance-business-consulting/ 301
-/vi/commodities-trading-consulting.html /vi/commodities-trading-consulting/ 301
-/vi/5-signs-your-business-needs-a-clear-strategy.html /vi/5-signs-your-business-needs-a-clear-strategy/ 301
-/vi/cash-flow-vs-profit.html /vi/cash-flow-vs-profit/ 301
+/ar/index.html /ar/ 301
+/ar/about-1.html /ar/about/ 301
+/ar/about-1 /ar/about/ 301
+/ar/service-1.html /ar/services/ 301
+/ar/service-1 /ar/services/ 301
+/ar/contact-1.html /ar/contact/ 301
+/ar/contact-1 /ar/contact/ 301
+/ar/industries.html /ar/industries/ 301
+/ar/it-consulting.html /ar/it-consulting/ 301
+/ar/finance-business-consulting.html /ar/finance-business-consulting/ 301
+/ar/commodities-trading-consulting.html /ar/commodities-trading-consulting/ 301
+/ar/5-signs-your-business-needs-a-clear-strategy.html /ar/5-signs-your-business-needs-a-clear-strategy/ 301
+/ar/cash-flow-vs-profit.html /ar/cash-flow-vs-profit/ 301
 
 /zh-tw/index.html /zh-tw/ 301
 /zh-tw/about-1.html /zh-tw/about/ 301
@@ -56,3 +56,7 @@
 /zh-tw/commodities-trading-consulting.html /zh-tw/commodities-trading-consulting/ 301
 /zh-tw/5-signs-your-business-needs-a-clear-strategy.html /zh-tw/5-signs-your-business-needs-a-clear-strategy/ 301
 /zh-tw/cash-flow-vs-profit.html /zh-tw/cash-flow-vs-profit/ 301
+
+# The Vietnamese version was removed: send its old addresses to the English pages.
+/vi / 301
+/vi/* /:splat 301

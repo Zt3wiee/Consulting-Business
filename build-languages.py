@@ -1,20 +1,22 @@
 """
-Builds the Khmer, Vietnamese and Chinese versions of the site from the English pages.
+Builds the Khmer, Arabic and Chinese versions of the site from the English pages.
 
-    python build-languages.py           build km/, vi/ and zh-tw/ and refresh the language switcher
+    python build-languages.py           build km/, ar/ and zh-tw/ and refresh the language switcher
     python build-languages.py --sync    also add any new English text to the files in lang/ (with "" values)
     python build-languages.py --missing also list the text that has no translation yet
 
 How it works
 - The English pages in this folder are the source. Edit them as usual.
-- lang/km.json, lang/vi.json and lang/zh-tw.json hold the translations, keyed by the English text.
+- lang/km.json, lang/ar.json and lang/zh-tw.json hold the translations, keyed by the English text.
   Text with formatting keeps its tags in both the key and the translation, for example
   "<span class=\"heilight-left\">How</span> we work with our clients."
 - A missing or empty translation shows the English instead, so a page never breaks.
 - Every page lives in its own folder (about/index.html is served as /about/; the home page is index.html
   at the top). Links between pages and to files are written from the site root ("/about/", "/assets/...").
-- The translated pages are written to km/, vi/ and zh-tw/ with the same folder layout (km/about/index.html).
+- The translated pages are written to km/, ar/ and zh-tw/ with the same folder layout (km/about/index.html).
   Do not edit those folders by hand: they are deleted and rebuilt every time this script runs.
+- Arabic is written right to left: its pages get dir="rtl" on <html> and the template's rtl-version
+  class on <body>; the RTL fixes live in assets/css/inner-circle-blue.css.
 - The language switcher, the language fonts and the alternate-language links live between
   <!--lang:...--> markers in every page. This script writes them; edit the templates below instead.
 """
@@ -35,12 +37,13 @@ LANG_DIR = os.path.join(ROOT, "lang")
 SITE_URL = ""
 
 LANGUAGES = [
-    # code, <html lang>, name shown in the switcher, short label, Google Fonts stylesheet (None = site fonts)
+    # code, <html lang>, name shown in the switcher, short label, Google Fonts stylesheet (None = site fonts),
+    # and "rtl": True for languages written right to left
     {"code": "en", "html_lang": "en", "native": "English", "short": "EN", "font": None},
     {"code": "km", "html_lang": "km", "native": "ភាសាខ្មែរ", "short": "ខ្មែរ",
      "font": "https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap"},
-    {"code": "vi", "html_lang": "vi", "native": "Tiếng Việt", "short": "VI",
-     "font": "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"},
+    {"code": "ar", "html_lang": "ar", "native": "العربية", "short": "عربي", "rtl": True,
+     "font": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"},
     {"code": "zh-tw", "html_lang": "zh-Hant-TW", "native": "中文 (台灣)", "short": "中文",
      "font": "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap"},
 ]
@@ -367,6 +370,13 @@ def fill_markers(source, page, current, t):
     return MARKER_RE.sub(lambda m: m.group(1) + marker_content(m.group(2), page, current, t) + m.group(4), source)
 
 
+def add_class(tag, name):
+    """Adds a class to one start tag, keeping any classes it already has."""
+    if re.search(r'\bclass="', tag):
+        return re.sub(r'\bclass="', 'class="' + name + ' ', tag, count=1)
+    return tag[:-1] + f' class="{name}">'
+
+
 def build():
     keys = list(collect_keys()) + SWITCHER_KEYS
     if "--sync" in sys.argv:
@@ -390,6 +400,9 @@ def build():
             source = MARKER_RE.sub(lambda m: m.group(1) + m.group(4), source)
             source = translate_page(source, t)
             source = re.sub(r'<html\b[^>]*\blang="[^"]*"', lambda m: re.sub(r'lang="[^"]*"', f'lang="{language["html_lang"]}"', m.group(0)), source, count=1)
+            if language.get("rtl"):
+                source = re.sub(r"<html\b", '<html dir="rtl"', source, count=1)
+                source = re.sub(r"<body\b([^>]*)>", lambda m: add_class(m.group(0), "rtl-version"), source, count=1)
             source = prefix_links(source, language["code"])
             source = fill_markers(source, page, language, t)
             write(os.path.join(folder, page), source)

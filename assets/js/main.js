@@ -230,6 +230,7 @@
 
     //CaseStudy owlCarousel
     caseStudy.owlCarousel({
+      rtl: document.documentElement.dir === "rtl",
       loop: true,
       nav: true,
       dots: false,
@@ -1064,7 +1065,7 @@
   // Compare clean addresses without the language folder: /km/about/ and /about/ are both "/about/"
   function clean(path) {
     path = path.replace(/index\.html$/, '').replace(/\/?$/, '/');
-    return path.replace(/^\/(km|vi|zh-tw)\//, '/');
+    return path.replace(/^\/(km|ar|zh-tw)\//, '/');
   }
   var page = clean(location.pathname);
   var servicePages = ['/it-consulting/', '/finance-business-consulting/', '/commodities-trading-consulting/'];
